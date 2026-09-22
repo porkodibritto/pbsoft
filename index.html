@@ -117,10 +117,9 @@ padding:2px; width:50px; height:50px;
     </ul>
 
 
-<body>
+
 <ParallaxLayer
-sticky={{start0.9}}
->
+sticky={{start0.9}}>
 <div class=ganesh>
 
 <img style="margin-left:15px;
@@ -129,7 +128,6 @@ border:solid black;
 padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
 </div>
 </ParallaxLayer>
-</body>
 </p>
 </body>
 </html>
@@ -589,7 +587,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
             cursor: not-allowed;
         }
         /* Green Download Button */
-        #downloadBtn {
+        #downloadBtnp {
             display: none;
             width: 100%;
             background-color: #28a745;
@@ -603,7 +601,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
             margin-top: 10px;
             text-align: center;
         }
-        #downloadBtn:hover {
+        #downloadBtnp:hover {
             background-color: #218838;
         }
     </style>
@@ -615,8 +613,8 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
 
         <!-- Input accepts only image file format -->
         <div class="control-group">
-            <label for="imageInput">Select Image:</label>
-            <input type="file" id="imageInput" accept="image/*">
+            <label for="imageInputp">Select Image:</label>
+            <input type="file" id="imageInputp" accept="image/*">
         </div>
 
         <!-- Textbox enabled after input -->
@@ -640,35 +638,35 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
         </div>
 
         <!-- Green download button hidden by default -->
-        <button id="downloadBtn">Download Resized Image</button>
+        <button id="downloadBtnp">Download Resized Image</button>
     </div>
 
     <script>
-        const imageInput = document.getElementById('imageInput');
+        const imageInputp = document.getElementById('imageInputp');
         const resizePercentage = document.getElementById('resizePercentage');
         const checkboxes = document.querySelectorAll('.format-checkbox');
         const convertBtn = document.getElementById('convertBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadBtnp = document.getElementById('downloadBtnp');
 
-        let originalFile = null;
+        let originalFilep = null;
         let selectedFormat = null;
-        let downloadUrl = null;
-        let outputFileName = "";
+        let downloadUrlp = null;
+        let outputFileNamep = "";
 
         // Triggered whenever the choose image button is clicked
-        imageInput.addEventListener('click', () => {
-            resetFormState();
+        imageInputp.addEventListener('click', () => {
+            resetFormStatep();
         });
 
         // Triggered when a new file selection completes
-        imageInput.addEventListener('change', (e) => {
+        imageInputp.addEventListener('change', (e) => {
             if (e.target.files.length > 0) {
-                originalFile = e.target.files[0];
+                originalFilep = e.target.files[0];
                 resizePercentage.disabled = false;
                 convertBtn.disabled = false;
-                selectedFormat = originalFile.type; 
+                selectedFormat = originalFilep.type; 
             } else {
-                resetFormState();
+                resetFormStatep();
             }
         });
 
@@ -679,7 +677,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
                     checkboxes.forEach(cb => { if (cb !== this) cb.checked = false; });
                     selectedFormat = this.value;
                 } else {
-                    selectedFormat = originalFile ? originalFile.type : null;
+                    selectedFormat = originalFilep ? originalFilep.type : null;
                 }
             });
         });
@@ -707,7 +705,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
         }
 
         convertBtn.addEventListener('click', () => {
-            if (!originalFile) return;
+            if (!originalFilep) return;
 
             // Step 1: Immediately disable the textbox
             resizePercentage.disabled = true;
@@ -729,53 +727,53 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
                     // Filename building pattern: input file name + resize
-                    const lastDotIndex = originalFile.name.lastIndexOf('.');
-                    const nameWithoutExtension = lastDotIndex !== -1 ? originalFile.name.substring(0, lastDotIndex) : originalFile.name;
+                    const lastDotIndex = originalFilep.name.lastIndexOf('.');
+                    const nameWithoutExtension = lastDotIndex !== -1 ? originalFilep.name.substring(0, lastDotIndex) : originalFilep.name;
                     
-                    let extension = originalFile.name.substring(lastDotIndex);
+                    let extension = originalFilep.name.substring(lastDotIndex);
                     if (selectedFormat === 'image/jpeg') extension = '.jpg';
                     if (selectedFormat === 'image/png') extension = '.png';
                     if (selectedFormat === 'image/webp') extension = '.webp';
 
-                    outputFileName = `${nameWithoutExtension}resize${extension}`;
-                    downloadUrl = canvas.toDataURL(selectedFormat);
+                    outputFileNamep = `${nameWithoutExtension}resize${extension}`;
+                    downloadUrlp = canvas.toDataURL(selectedFormat);
 
                     // Reveal green download element
-                    downloadBtn.style.display = 'block';
+                    downloadBtnp.style.display = 'block';
                 };
                 img.src = event.target.result;
             };
-            reader.readAsDataURL(originalFile);
+            reader.readAsDataURL(originalFilep);
         });
 
         // Download event and full reset route
-        downloadBtn.addEventListener('click', () => {
-            if (!downloadUrl) return;
+        downloadBtnp.addEventListener('click', () => {
+            if (!downloadUrlp) return;
             
             const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = outputFileName;
+            link.href = downloadUrlp;
+            link.download = outputFileNamep;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
 
             // Clear input, clear & disable textbox, disappear download button
-            resetFormState();
-            imageInput.value = ""; // Also wipe the file path selector completely
+            resetFormStatep();
+            imageInputp.value = ""; // Also wipe the file path selector completely
         });
 
         // Master UI field state reset function
-        function resetFormState() {
-	    imageInput.value = "";
+        function resetFormStatep() {
+	    imageInputp.value = "";
             resizePercentage.value = "";
             resizePercentage.disabled = true;
             convertBtn.disabled = true;
-            downloadBtn.style.display = 'none';
+            downloadBtnp.style.display = 'none';
             checkboxes.forEach(cb => cb.checked = false);
-            originalFile = null;
+            originalFilep = null;
             selectedFormat = null;
-            downloadUrl = null;
-            outputFileName = "";
+            downloadUrlp = null;
+            outputFileNamep = "";
         }
     </script>
 </body>
@@ -787,7 +785,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Resizer Card</title>
     <style>
-        /* Base page layout using Flexbox to place side-by-side if there is enough room */
+         /* Base page layout using Flexbox to place side-by-side if there is enough room */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 20px;
@@ -798,9 +796,7 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
         }
 
 
-
-        /* Card Container 3 - Your flexible, light pink resizer dashboard */
-        .card-container-3 {
+        .container3 {
             flex: 1;
             min-width: 340px;
             max-width: 500px;
@@ -812,322 +808,322 @@ padding:2px; width:100px; height:100px; object-fit:cover;" src="lordganesh.jpg">
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             box-sizing: border-box;
-        }
 
-        .card-title {
+        }
+        .download-counter {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-weight: bold;
+            color: #d11a5b;
+            font-size: 14px;
+        }
+        h2 {
             margin-top: 0;
-            color: #4a4a4a;
-            border-bottom: 2px solid #ffb6c1;
-            padding-bottom: 8px;
+            color: #333;
+            text-align: center;
         }
-
         .form-group {
             margin-bottom: 15px;
         }
-
-        .form-group label {
+        label {
             display: block;
-            font-size: 14px;
-            font-weight: 600;
             margin-bottom: 5px;
-            color: #333;
+            font-weight: bold;
         }
-
-        .row-inputs {
+        .row {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 10px;
             margin-bottom: 10px;
         }
-
-        .row-inputs input[type="text"], 
-        .row-inputs input[type="number"] {
-            flex: 1;
+        .info-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        input[type="number"], input[type="file"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            width: 100%;
             box-sizing: border-box;
         }
-
-        input[readonly] {
-            background-color: #eaeaea;
-            color: #666;
+        input[type="number"]:disabled {
+            background-color: #e9e9e9;
             cursor: not-allowed;
         }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: bold;
-            white-space: nowrap;
+        .inline-input {
+            width: 80px !important;
         }
-
-        .btn {
+        button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s ease;
+            transition: background 0.2s;
         }
-
-        .btn-change {
-            background-color: #4a90e2;
+        #btnStart {
+            background-color: #007bff;
             color: white;
         }
-
-        .btn-change:disabled {
+        #btnStart:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
         }
-
-        .btn-download {
-            background-color: #2ecc71; /* Green color */
+        #btn24 {
+            background-color: #28a745;
             color: white;
-            display: none; /* Hidden by default */
+            margin-top: 15px;
+            display: none;
         }
-
-        .btn-download:hover {
-            background-color: #27ae60;
+        #btn24:hover {
+            background-color: #218838;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
     </style>
 </head>
 <body>
-
-
-    <!-- Card Container 3: Light Pink Resizer Panel -->
-    <div class="card-container-3">
-        <h3 class="card-title">Image Resizer by Pixels or by DPI</h3>
-        
-        <!-- Image Upload Input -->
-        <div class="form-group">
-            <label for="imageLoader">Choose Image File</label>
-            <input type="file" id="imageLoader" accept="image/*">
-        </div>
-
-        <!-- Original Dimensions (Read Only) -->
-        <div class="form-group">
-            <label>Original Image Resolution</label>
-            <div class="row-inputs">
-                <input type="text" id="textbox1" placeholder="Horizontal Pixels" readonly>
-                <input type="text" id="textbox2" placeholder="Vertical Pixels" readonly>
-            </div>
-        </div>
-
-        <!-- Mode Selection 1: Custom Pixels -->
-        <div class="form-group">
-            <div class="checkbox-container">
-                <input type="checkbox" id="checkbox1" disabled>
-                <label for="checkbox1">Resize by Pixels (16 - 90,001)</label>
-            </div>
-            <div class="row-inputs" style="margin-top: 5px;">
-                <input type="number" id="textbox3" placeholder="Target Width" disabled>
-                <input type="number" id="textbox4" placeholder="Target Height" disabled>
-            </div>
-        </div>
-
-        <!-- Mode Selection 2: Custom DPI -->
-        <div class="form-group">
-            <div class="checkbox-container">
-                <input type="checkbox" id="checkbox2" disabled>
-                <label for="checkbox2">Resize by DPI (30 - 550)</label>
-            </div>
-            <div class="row-inputs" style="margin-top: 5px;">
-                <input type="number" id="textbox5" placeholder="Target DPI" disabled>
-            </div>
-        </div>
-
-        <!-- Execution Buttons -->
-        <button id="btnChange" class="btn btn-change" disabled>Change Image</button>
-        <button id="btnDownload" class="btn btn-download">Download Resized Image</button>
+<div class="container3">
+    <div class="download-counter">Downloads: <span id="downloadCount">0</span></div>
+    <h2>Image Resizer by Pixels or by DPI</h2>
+    
+    <!-- File Input -->
+    <div class="form-group">
+        <label for="imageInput3">Choose Image:</label>
+        <input type="file" id="imageInput3" accept="image/*">
     </div>
 
-    <script>
-        // DOM Elements
-        const imageLoader = document.getElementById('imageLoader');
-        const textbox1 = document.getElementById('textbox1');
-        const textbox2 = document.getElementById('textbox2');
-        const textbox3 = document.getElementById('textbox3');
-        const textbox4 = document.getElementById('textbox4');
-        const textbox5 = document.getElementById('textbox5');
-        const checkbox1 = document.getElementById('checkbox1');
-        const checkbox2 = document.getElementById('checkbox2');
-        const btnChange = document.getElementById('btnChange');
-        const btnDownload = document.getElementById('btnDownload');
+    <!-- Original Dimensions Display -->
+    <div class="info-text">
+        Original Width: <span id="txtw">-</span> px | Original Height: <span id="txth">-</span> px
+    </div>
 
-        let originalImage = null;
-        let originalFileName = "";
-        let originalMimeType = "image/png";
-        let finalResizedDataUrl = null;
+    <!-- Pixel Options -->
+    <div class="row">
+        <div class="checkbox-container">
+            <input type="radio" id="chkp" name="resizeType" disabled>
+            <label for="chkp">Resize by Pixels</label>
+        </div>
+        <input type="number" id="txtuw" class="inline-input" placeholder="W" disabled min="16" max="90001">
+        <input type="number" id="txtuh" class="inline-input" placeholder="H" disabled min="16" max="90001">
+    </div>
 
-        // Reset all states and UI inputs
-        function resetUI() {
-            imageLoader.value = "";
-            textbox1.value = "";
-            textbox2.value = "";
+    <!-- DPI Options -->
+    <div class="row">
+        <div class="checkbox-container">
+            <input type="radio" id="chkdpi" name="resizeType" disabled>
+            <label for="chkdpi">Resize by DPI</label>
+        </div>
+        <input type="number" id="txtdpi" class="inline-input" placeholder="DPI" disabled min="30" max="550">
+    </div>
+
+    <!-- Action Buttons -->
+    <button type="button" id="btnStart" disabled>Start Resize</button>
+    <button type="button" id="btn24">Download Resized Image</button>
+</div>
+
+<script>
+    // DOM Elements
+    const imageInput3 = document.getElementById('imageInput3');
+    const txtw = document.getElementById('txtw');
+    const txth = document.getElementById('txth');
+    const chkp = document.getElementById('chkp');
+    const chkdpi = document.getElementById('chkdpi');
+    const txtuw = document.getElementById('txtuw');
+    const txtuh = document.getElementById('txtuh');
+    const txtdpi = document.getElementById('txtdpi');
+    const btnStart = document.getElementById('btnStart');
+    const btn24 = document.getElementById('btn24');
+    const downloadCountLabel = document.getElementById('downloadCount');
+
+    let downloadCount = 0;
+    let loadedImage = null;
+    let fileMetadata = { name: '', type: '', ext: '' };
+    let processedBlobUrl = null;
+
+    // Reset workflow data
+    function clearData() {
+        txtw.textContent = '-';
+        txth.textContent = '-';
+        
+        chkp.checked = false;
+        chkp.disabled = true;
+        chkdpi.checked = false;
+        chkdpi.disabled = true;
+
+        txtuw.value = '';
+        txtuw.disabled = true;
+        txtuh.value = '';
+        txtuh.disabled = true;
+        txtdpi.value = '';
+        txtdpi.disabled = true;
+
+        btnStart.disabled = true;
+        btn24.style.display = 'none';
+        
+        loadedImage = null;
+        if (processedBlobUrl) {
+            URL.revokeObjectURL(processedBlobUrl);
+            processedBlobUrl = null;
+        }
+    }
+
+    // Trigger clear on click before file selection finishes
+    imageInput3.addEventListener('click', () => {
+        clearData();
+    });
+
+    // Handle File Selection
+    imageInput3.addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        const file = files[0];
+
+        // Safely extract names and extensions
+        fileMetadata.name = file.name.substring(0, file.name.lastIndexOf('.'));
+        fileMetadata.ext = file.name.substring(file.name.lastIndexOf('.'));
+        fileMetadata.type = file.type;
+
+        // Use standard ObjectURL instead of FileReader for reliable element sizing
+        const img = new Image();
+        img.onload = function() {
+            loadedImage = img;
             
-            checkbox1.checked = false;
-            checkbox1.disabled = true;
-            textbox3.value = "";
-            textbox3.disabled = true;
-            textbox4.value = "";
-            textbox4.disabled = true;
+            // Explicitly map properties into elements
+            txtw.textContent = img.naturalWidth || img.width;
+            txth.textContent = img.naturalHeight || img.height;
 
-            checkbox2.checked = false;
-            checkbox2.disabled = true;
-            textbox5.value = "";
-            textbox5.disabled = true;
-
-            btnChange.disabled = true;
-            btnDownload.style.display = "none";
+            // Enable checkboxes
+            chkp.disabled = false;
+            chkdpi.disabled = false;
             
-            originalImage = null;
-            originalFileName = "";
-            finalResizedDataUrl = null;
+            // Default pick Pixels option automatically
+            chkp.checked = true;
+            handleToggleLogic();
+        };
+        img.src = URL.createObjectURL(file);
+    });
+
+    // Toggle Input States based on selection
+    function handleToggleLogic() {
+        if (chkp.checked) {
+            txtuw.disabled = false;
+            txtuh.disabled = false;
+            txtdpi.disabled = true;
+            txtdpi.value = '';
+        } else if (chkdpi.checked) {
+            txtdpi.disabled = false;
+            txtuw.disabled = true;
+            txtuh.disabled = true;
+            txtuw.value = '';
+            txtuh.value = '';
+        }
+        validateInputs();
+    }
+
+    chkp.addEventListener('change', handleToggleLogic);
+    chkdpi.addEventListener('change', handleToggleLogic);
+    txtuw.addEventListener('input', validateInputs);
+    txtuh.addEventListener('input', validateInputs);
+    txtdpi.addEventListener('input', validateInputs);
+
+    // Dynamic verification to enable Start Button
+    function validateInputs() {
+        if (chkp.checked) {
+            const w = txtuw.value;
+            const h = txtuh.value;
+            btnStart.disabled = !(w && h && w >= 16 && w <= 90001 && h >= 16 && h <= 90001);
+        } else if (chkdpi.checked) {
+            const dpi = txtdpi.value;
+            btnStart.disabled = !(dpi && dpi >= 30 && dpi <= 550);
+        } else {
+            btnStart.disabled = true;
+        }
+    }
+
+    // Process Resizing
+    btnStart.addEventListener('click', () => {
+        if (!loadedImage) return;
+
+        let targetWidth = loadedImage.naturalWidth || loadedImage.width;
+        let targetHeight = loadedImage.naturalHeight || loadedImage.height;
+
+        if (chkp.checked) {
+            let w = Math.round(parseFloat(txtuw.value));
+            let h = Math.round(parseFloat(txtuh.value));
+
+            // Bounds adjustments
+            if (w < 16) w = 16;
+            if (w > 90001) w = 90001;
+            if (h < 16) h = 16;
+            if (h > 90001) h = 90001;
+
+            txtuw.value = w;
+            txtuh.value = h;
+            targetWidth = w;
+            targetHeight = h;
+        } else if (chkdpi.checked) {
+            let dpi = Math.round(parseFloat(txtdpi.value));
+
+            // Bounds adjustments
+            if (dpi < 30) dpi = 30;
+            if (dpi > 550) dpi = 50; // Per instruction: change to 50 if greater than 550
+
+            txtdpi.value = dpi;
+            
+            // Scale logic matching custom input rules
+            const scale = dpi / 72; 
+            targetWidth = Math.round((loadedImage.naturalWidth || loadedImage.width) * scale);
+            targetHeight = Math.round((loadedImage.naturalHeight || loadedImage.height) * scale);
         }
 
-        // Trigger reset when clicking the upload button
-        imageLoader.addEventListener('click', () => {
-            resetUI();
-        });
-
-        // Parse image details on upload
-        imageLoader.addEventListener('change', function(event) {
-            if (!event.target.files.length) return;
-            
-            const file = event.target.files[0];
-            originalMimeType = file.type;
-            
-            // Extract the filename without extension
-            const lastDotIndex = file.name.lastIndexOf('.');
-            if (lastDotIndex !== -1) {
-                originalFileName = file.name.substring(0, lastDotIndex);
-            } else {
-                originalFileName = file.name;
-            }
-            if (file) {
-                // Read the file data
-               const reader = new FileReader();
-               reader.onload = function(readerEvent) { 
-		// Create an off-screen image element to decode the image asset
-                const originalImage = new Image();
-                originalImage.onload = function() {
-                    // Populate read-only textboxes with dimensions
-                    textbox1.value = originalImage.width; // Horizontal Pixels
-                    textbox2.value = originalImage.height; // Vertical Pixels
-
-                    // Enable operational triggers
-                    checkbox1.disabled = false;
-                    checkbox2.disabled = false;
-                    btnChange.disabled = false;
-                };
-                originalImage.src = readerEvent.target.result;
-            };
-            reader.readAsDataURL(file);
-         }
+        // Render high-quality canvas layout
+        const canvas = document.createElement('canvas');
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        const ctx = canvas.getContext('2d');
         
-        });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(loadedImage, 0, 0, targetWidth, targetHeight);
 
-        // Mutual exclusion logic for mode selection
-        checkbox1.addEventListener('change', function() {
-            if (this.checked) {
-                checkbox2.checked = false;
-                textbox5.disabled = true;
-                textbox5.value = "";
-                
-                textbox3.disabled = false;
-                textbox4.disabled = false;
-            } else {
-                textbox3.disabled = true;
-                textbox4.disabled = true;
-            }
-        });
+        canvas.toBlob((blob) => {
+            if (processedBlobUrl) URL.revokeObjectURL(processedBlobUrl);
+            processedBlobUrl = URL.createObjectURL(blob);
+            btn24.style.display = 'block'; 
+        }, fileMetadata.type, 0.95);
+    });
 
-        checkbox2.addEventListener('change', function() {
-            if (this.checked) {
-                checkbox1.checked = false;
-                textbox3.disabled = true;
-                textbox4.disabled = true;
-                textbox3.value = "";
-                textbox4.value = "";
+    // Handle Download Action
+    btn24.addEventListener('click', () => {
+        if (!processedBlobUrl) return;
 
-                textbox5.disabled = false;
-            } else {
-                textbox5.disabled = true;
-            }
-        });
+        const link = document.createElement('a');
+        link.href = processedBlobUrl;
+        link.download = `${fileMetadata.name}_resized${fileMetadata.ext}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-        // Execute value checks and run transformations
-        btnChange.addEventListener('click', function() {
-            if (!checkbox1.checked && !checkbox2.checked) {
-                alert("Please select either Pixel or DPI transformation mode first.");
-                return;
-            }
+        // Update Counter Layout
+        downloadCount++;
+        downloadCountLabel.textContent = downloadCount;
 
-            // Lock input parameters
-            checkbox1.disabled = true;
-            textbox3.disabled = true;
-            textbox4.disabled = true;
-            checkbox2.disabled = true;
-	    textbox5.disabled = true;
-            btnChange.disabled = true;
-	    let targetWidth = originalImage.width;
-	    let targetHeight = originalImage.height;
-     if (checkbox1.checked) 
-	{// Read and bounding box validation for Pixels (16 to 90001)
-	let w = parseInt(textbox3.value) || 16;
-	let h = parseInt(textbox4.value) || 16;
-          if (w < 16) w = 16;
-          if (w > 90001) w = 90001;
-          if (h < 16) h = 16;
-  	  if (h > 90001) h = 90001;
-           textbox3.value = w;
-           textbox4.value = h;
-           targetWidth = w;
-           targetHeight = h;
-	} else if (checkbox2.checked) {
-	   // Read and bounding box validation for DPI (30 to 550)
-	   let dpi = parseInt(textbox5.value) || 30;
-           if (dpi < 30) dpi = 30;
-           if (dpi > 550) dpi = 550;
-           textbox5.value = dpi;
-         // Assume standard screen baseline is 72 DPI to perform dimensional calculation
-          const scaleFactor = dpi / 72;
-   	  targetWidth = Math.round(originalImage.width * scaleFactor);
- 	  targetHeight = Math.round(originalImage.height * scaleFactor);}
-         // Draw to a canvas to resizeconst 
-         canvas = document.createElement('canvas');
-         canvas.width = targetWidth;
-         canvas.height = targetHeight;
-	 const ctx = canvas.getContext('2d');
-	 ctx.drawImage(originalImage, 0, 0, targetWidth, targetHeight);
-        // Export to native format strings
-	 finalResizedDataUrl = canvas.toDataURL(originalMimeType);
-	// Display Green Download target
-	  btnDownload.style.display = "block";});
-        // Trigger dynamic download action and auto-cleanup
-         btnDownload.addEventListener('click', function() {
-	 if (!finalResizedDataUrl) return;
-	// Figure out file extension
-         let extension = "png";
-         if (originalMimeType.includes("jpeg") || originalMimeType.includes("jpg")) extension = "jpg";
-	 else if (originalMimeType.includes("gif")) extension = "gif";
-	 else if (originalMimeType.includes("webp")) extension = "webp";
-	 const downloadLink = document.createElement('a');
-	 downloadLink.href = finalResizedDataUrl;
-          downloadLink.download = ${originalFileName}_img_resized.${extension};
-	 document.body.appendChild(downloadLink);
-	 downloadLink.click();
-	 document.body.removeChild(downloadLink);
-          // Post-download hard wipe
-	  resetUI();
-         });
+        // Cleanup cycle
+        imageInput3.value = '';
+        clearData();
+    });
 </script>
+
 
 </body>
 </html>
