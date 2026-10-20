@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppaVu CakeS Anjugramam</title>
+    <style>
+        /* Reset default browser spacing */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+
+        /* 2. Landscape Image (Stretches/Shrinks with the page width) */
+        .landscape-container2 {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .landscape-img2 {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Ensures it stays in a landscape ratio without distortion */
+            aspect-ratio: 16 / 6; 
+            object-fit: cover;
+        }
+        /* 2. Landscape Image (Stretches/Shrinks with the page width) */
+        .landscape-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .landscape-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Ensures it stays in a landscape ratio without distortion */
+            aspect-ratio: 16 / 6; 
+            object-fit: cover;
+        }
+
+        /* Container for the content below */
+        .main-content {
+            max-width: 300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 3. Two-Column Grid Setup */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Exactly 2 columns */
+            column-gap: 60px; /* Space between grid items */
+            row-gap: 40px; /* Spacing between rows */
+        }
+
+        /* Grid Item Styling */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Aligns both the image and content to the absolute center of the column */
+            text-align: center; /* Center aligns text inside the description block */
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .grid-item img {
+            border: solid black;
+            padding: 2px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto; /* Extra insurance for centered horizontal block layout alignment */
+        }
+
+        .grid-item-description {
+            padding: 15px;
+        }
+
+        .grid-item-description h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .grid-item-description p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive tweak: Stacks into 1 column on mobile screens */
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- 2. Landscape Image2 -->
+    <div class="landscape-container">
+        <!-- Replace the src URL with your actual landscape image path -->
+        <img class="landscape-img2" src="menub1.jpg" alt="Landscape Banner Image">
+    </div>
+    <!-- 2. Landscape Image -->
+    <div class="landscape-container">
+        <!-- Replace the src URL with your actual landscape image path -->
+        <img class="landscape-img" src="menub2.jpg" alt="Landscape Banner Image">
+    </div>
+
+    <!-- Main Container for the 10 Images -->
+    <main class="main-content">
+        <div class="image-grid">
+            
+            <!-- Item 1 -->
+            <div class="grid-item">
+                <img src="cake1.jpg" alt="Image 1">
+
+                <div class="grid-item-description">
+                    <h3>Cake 1</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="grid-item">
+                <img src="cake2.jpg"alt="Image 2">
+                <div class="grid-item-description">
+                    <h3>Cake 2</h3>
+                    <p>Order Now get 1.25% Discount 
+call 8103533774 to place your order.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="grid-item">
+                <img src="cake3.jpg" alt="Image 3">
+                <div class="grid-item-description">
+                    <h3>Cake 3</h3>
+                    <p>Order Now get 1.1% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="grid-item">
+                <img src="cake4.jpg" alt="Image 4">
+                <div class="grid-item-description">
+                    <h3>Cake 4</h3>
+                    <p>Order Now get 1.3% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="grid-item">
+                <img src="cake5.jpg" alt="Image 5">
+                <div class="grid-item-description">
+                    <h3>Cake 5</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="grid-item">
+                <img src="cake6.jpg" alt="Image 6">
+                <div class="grid-item-description">
+                    <h3>Cake 6</h3>
+                    <p>Order Now get 2.1% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="grid-item">
+                <img src="cake7.jpg" alt="Image 7">
+                <div class="grid-item-description">
+                    <h3>Cake 7</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="grid-item">
+                <img src="cake8.jpg" alt="Image 8">
+                <div class="grid-item-description">
+                    <h3>Cake 8</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="grid-item">
+                <img src="cake9.jpg" alt="Image 9">
+                <div class="grid-item-description">
+                    <h3>Cake 9</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 10 -->
+            <div class="grid-item">
+                <img src="cake10.jpg" alt="Image 10">
+                <div class="grid-item-description">
+                    <h3>Cake 10</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

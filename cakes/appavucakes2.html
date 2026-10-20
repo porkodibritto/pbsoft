@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout with Custom Box Images</title>
+    <style>
+        /* Base Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* 2. Responsive Landscape Hero Image */
+        .hero-image-container {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            aspect-ratio: 16 / 6; 
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* 2. Responsive Landscape Hero Image */
+        .hero-image-container2 {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            aspect-ratio: 16 / 6; 
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .hero-image-container img2 {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* 3. Two-Column Image Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Arranged in two columns */
+            gap: 30px; 
+        }
+
+        /* Individual Gallery Card Container */
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: 6px;
+        }
+
+        /* Exact styling requirements for the gallery image elements */
+        .gallery-item img {
+            border: solid black;
+            padding: 2px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Description Styling Below Individual Images */
+        .item-description {
+            padding-top: 12px;
+            max-width: 100%;
+        }
+        .item-description h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+        .item-description p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Mobile Viewport Adjustment */
+        @media (max-width: 650px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Collapses to single column stack on mobile screens */
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Page Content Framework Wrapper -->
+    <main class="page-container">
+        <!-- 2. Landscape Hero Image Asset Element (Stretches / Shrinks with the layout view) -->
+        <div class="hero-image-container">
+            <img src="menub1.jpg" alt="Stretching Landscape Banner Image">
+        </div>
+
+
+        <!-- 2. Landscape Hero Image Asset Element (Stretches / Shrinks with the layout view) -->
+        <div class="hero-image-container2">
+            <img src="menub2.jpg" alt="Stretching Landscape Banner Image">
+        </div>
+
+        <!-- 3. Grid Component House: Images arranged in two columns with descriptions below -->
+        <section class="gallery-grid">
+            
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="cake1.jpg" alt="Gallery Image 1">
+                <div class="item-description">
+                    <h3>01. Alpine Valley</h3>
+                    <p>Order Now get 1.5% Discount 
+call 8103533774 to place your order</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 2">
+                <div class="item-description">
+                    <h3>02. Deep Sunlit Forest</h3>
+                    <p>Tall redwood tree structures piercing through afternoon golden light filters in the wild.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 3">
+                <div class="item-description">
+                    <h3>03. Woodland Bridges</h3>
+                    <p>A look into rustic wooden path construction helping travelers cross local moss creeks safely.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 4">
+                <div class="item-description">
+                    <h3>04. Countryside Horizon</h3>
+                    <p>Peaceful fields expanding out to meet the vibrant blue sky overhead during standard spring season.</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 5">
+                <div class="item-description">
+                    <h3>05. Rolling Hills</h3>
+                    <p>Stunning green topography layered naturally on top of one another following morning rain showers.</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 6">
+                <div class="item-description">
+                    <h3>06. Wilderness Paths</h3>
+                    <p>Exploratory rocky road tracking navigating through dangerous mountain valleys and ridges.</p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 7">
+                <div class="item-description">
+                    <h3>07. Nature Canopy</h3>
+                    <p>Stretching green tree leaf coverage looking up from the forest baseline environment.</p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 8">
+                <div class="item-description">
+                    <h3>08. Autumn Leaves</h3>
+                    <p>Bright orange foliage signals the natural rotation change of environmental cycles.</p>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 9">
+                <div class="item-description">
+                    <h3>09. Mountain Lakes</h3>
+                    <p>Crystal clear glass reflections mirroring sharp snow-capped peak formations perfectly.</p>
+                </div>
+            </div>
+
+            <!-- Item 10 -->
+            <div class="gallery-item">
+                <img src="https://unsplash.com" alt="Gallery Image 10">
+                <div class="item-description">
+                    <h3>10. Sea Coast Horizon</h3>
+                    <p>Vibrant orange sunset meeting coastal ocean rock frameworks on the beach line.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
